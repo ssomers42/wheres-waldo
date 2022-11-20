@@ -3,6 +3,11 @@
   --red: #EB5757;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 html, body, #root, .App {
   height: 100vh;
   overflow: hidden;
