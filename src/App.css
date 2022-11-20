@@ -1,0 +1,52 @@
+:root {
+  --blue: #2F80ED;
+  --red: #EB5757;
+}
+
+html, body, #root, .App {
+  height: 100vh;
+  overflow: hidden;
+}
+
+h1 {
+  margin: 0px;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 156px;
+  line-height: 189px;
+}
+
+#home-container {
+  background-image: url(../public/assets/home-bg.jpg);
+  height: 100%;
+}
+
+#home-btn {
+  background-color: transparent;
+  border: none;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 156px;
+  line-height: 189px;
+  position: absolute;
+  bottom: 10vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.blue {
+  color: var(--blue)
+}
+
+.red {
+  color: var(--red)
+}
+
+.home-text {
+  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black, -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black, 0.05em 0.05em black;
+}
+
+.home-title {
+  transform: rotate(-15deg);
+  margin-left: 10%;
+}
