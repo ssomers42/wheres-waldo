@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 
 const Level = () => {
   const [currentLevel, setCurrentLevel] = useState(0);
-  let { levelName, img, xStart, xEnd, yStart, yEnd } = levels[currentLevel];
+  let { levelName, img, relXStart, relXEnd, relYStart, relYEnd } =
+    levels[currentLevel];
 
   const levelStyle = {
     imageStyle: { backgroundColor: 'black', maxWidth: '100vw' },
@@ -23,22 +24,33 @@ const Level = () => {
   };
 
   const checkForCage = (e) => {
-    //TODO: Include width and/or height calculation for fullscreen images
+    //TODO: Round floating point relX, relY for comparison
 
     //get coords for the image on screen
     let image = document.querySelector('#image');
-    var rect = image.getBoundingClientRect();
+    let rect = image.getBoundingClientRect();
+
+    let imageWidth = rect.width;
+    let imageHeight = rect.height;
 
     //get absolute click location using the images distance from the browser's X0, Y0
     let absX = Math.floor(e.clientX - rect.left);
     let absY = Math.floor(e.clientY - rect.top);
 
+    let relX = absX / imageWidth;
+    let relY = absY / imageHeight;
+
     //use absolute coords to check if the cursor is on the image
-    if (absX > xStart && absX < xEnd && absY > yStart && absY < yEnd) {
+    if (
+      relX > relXStart &&
+      relX < relXEnd &&
+      relY > relYStart &&
+      relY < relYEnd
+    ) {
       console.log("IT'S HIM!");
       setCurrentLevel((level) => level + 1);
     }
-    console.log(e.clientX, e.clientY);
+    console.log(absX / imageWidth, absY / imageHeight);
   };
 
   useEffect(() => {
