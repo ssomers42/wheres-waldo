@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Level from './pages/Level';
-import Home from './pages/Home';
+import Game from './pages/Game';
+import App from './pages/App';
 
 const RouteSwitch = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/game" element={<Level />} />
+        <Route path="/" element={<App />} />
+        <Route path="/game" element={<Game />} />
       </Routes>
     </BrowserRouter>
   );

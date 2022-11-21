@@ -1,13 +1,24 @@
 import levels from '../levels';
+import Timer from '../components/Timer';
+import CurrentLevel from '../components/LevelDisplay';
+import WinnerModal from '../components/WinnerModal';
 import { useState, useEffect } from 'react';
+import { redirect } from 'react-router-dom';
 
-const Level = () => {
+const Game = () => {
   const [currentLevel, setCurrentLevel] = useState(0);
+  const [playing, setPlaying] = useState(true);
+  const [time, setTime] = useState(0);
+
   let { levelName, img, relXStart, relXEnd, relYStart, relYEnd } =
     levels[currentLevel];
 
   const levelStyle = {
-    imageStyle: { backgroundColor: 'black', maxWidth: '100vw' },
+    imageStyle: {
+      backgroundColor: 'black',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+    },
     containerStyle: {
       height: '100vh',
       display: 'flex',
@@ -15,21 +26,14 @@ const Level = () => {
       alignItems: 'center',
       backgroundColor: 'black',
     },
-    textStyle: {
-      position: 'absolute',
-      top: 0,
-      backgroundColor: 'white',
-      padding: '16px 32px',
-    },
   };
 
-  const checkForCage = (e) => {
-    //TODO: Round floating point relX, relY for comparison
-
+  const handleClick = (e) => {
     //get coords for the image on screen
     let image = document.querySelector('#image');
     let rect = image.getBoundingClientRect();
 
+    //get width, height of image
     let imageWidth = rect.width;
     let imageHeight = rect.height;
 
@@ -37,10 +41,11 @@ const Level = () => {
     let absX = Math.floor(e.clientX - rect.left);
     let absY = Math.floor(e.clientY - rect.top);
 
+    //use the image height, width to turn the absX, absY into relative coords for responsive viewports
     let relX = absX / imageWidth;
     let relY = absY / imageHeight;
 
-    //use absolute coords to check if the cursor is on the image
+    //use relative coords to check if the cursor is on the image
     if (
       relX > relXStart &&
       relX < relXEnd &&
@@ -48,16 +53,20 @@ const Level = () => {
       relY < relYEnd
     ) {
       console.log("IT'S HIM!");
-      setCurrentLevel((level) => level + 1);
+      if (currentLevel < levels.length - 1) {
+        setCurrentLevel((level) => level + 1);
+      } else {
+        setPlaying(false);
+      }
     }
-    console.log(absX / imageWidth, absY / imageHeight);
   };
 
+  //bind click event listener for each new level
   useEffect(() => {
-    document.addEventListener('click', checkForCage);
+    document.addEventListener('click', handleClick);
 
     return () => {
-      document.removeEventListener('click', checkForCage);
+      document.removeEventListener('click', handleClick);
     };
   }, [currentLevel]);
 
@@ -69,9 +78,11 @@ const Level = () => {
         alt=""
         style={levelStyle.imageStyle}
       />
-      <div style={levelStyle.textStyle}>{`Level ${currentLevel + 1} of 8`}</div>
+      {playing && <CurrentLevel currentLevel={currentLevel} />}
+      {playing && <Timer playing={playing} time={time} setTime={setTime} />}
+      {!playing && <WinnerModal time={time} setTime={setTime} />}
     </div>
   );
 };
 
-export default Level;
+export default Game;

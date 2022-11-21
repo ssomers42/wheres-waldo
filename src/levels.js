@@ -6,7 +6,6 @@ const levels = [
     relXEnd: 0.66,
     relYStart: 0.07,
     relYEnd: 0.19,
-    found: false,
   },
   {
     levelName: 'Smart Cage',
@@ -15,7 +14,6 @@ const levels = [
     relXEnd: 0.22,
     relYStart: 0.14,
     relYEnd: 0.24,
-    found: false,
   },
   {
     levelName: 'Classy Cage',
@@ -33,7 +31,6 @@ const levels = [
     relXEnd: 0.39,
     relYStart: 0.0,
     relYEnd: 0.18,
-    found: false,
   },
 
   {
@@ -43,7 +40,6 @@ const levels = [
     relXEnd: 0.15,
     relYStart: 0.42,
     relYEnd: 0.45,
-    found: false,
   },
   {
     levelName: 'Orchestra Cage',
@@ -52,7 +48,6 @@ const levels = [
     relXEnd: 0.72,
     relYStart: 0.26,
     relYEnd: 0.31,
-    found: false,
   },
   {
     levelName: 'Constitution Cage',
@@ -61,7 +56,6 @@ const levels = [
     relXEnd: 0.22,
     relYStart: 0.53,
     relYEnd: 0.56,
-    found: false,
   },
   {
     levelName: 'Crowd Cage',
@@ -70,7 +64,6 @@ const levels = [
     relXEnd: 0.97,
     relYStart: 0.31,
     relYEnd: 0.36,
-    found: false,
   },
 ];
 
