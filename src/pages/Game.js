@@ -3,7 +3,7 @@ import Timer from '../components/Timer';
 import CurrentLevel from '../components/LevelDisplay';
 import WinnerModal from '../components/WinnerModal';
 import { useState, useEffect } from 'react';
-import getLeaderboard from './utils/getLeaderboard';
+import getLeaderboard from '../utils/getLeaderboard';
 
 const Game = () => {
   const [currentLevel, setCurrentLevel] = useState(7);

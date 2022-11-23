@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import formatTime from '../pages/utils/formatTime';
+import formatTime from '../utils/formatTime';
 
 const Timer = ({ playing, time, setTime }) => {
   const [seconds, minutes] = formatTime(time);

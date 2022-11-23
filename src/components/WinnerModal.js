@@ -1,30 +1,28 @@
 import Timer from './Timer';
 import NameInput from './NameInput';
 import Leaderboard from './Leaderboard';
-
-const style = {
-  overlay: {
-    width: '100vw',
-    height: '100vh',
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    position: 'absolute',
-  },
-  container: {
-    padding: '40px',
-    backgroundColor: 'white',
-  },
-};
+import postLeaderboard from '../utils/postLeaderboard';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const WinnerModal = ({ time, leaderboard }) => {
+  const [name, setName] = useState('You');
+  const navigate = useNavigate();
   return (
-    <div style={style.overlay}>
-      <div style={style.container}>
+    <div
+      id="overlay"
+      onClick={(e) => {
+        postLeaderboard(e, time);
+        navigate('/');
+      }}
+    >
+      <div id="winner-modal" onClick={(e) => e.stopPropagation()}>
         <Timer time={time} />
         <p>
           Slap your name on that leaderboard. <br /> You've earned it.
         </p>
-        <NameInput time={time} />
-        <Leaderboard leaderboard={leaderboard} time={time} />
+        <NameInput name={name} setName={setName} time={time} />
+        <Leaderboard leaderboard={leaderboard} name={name} time={time} />
       </div>
     </div>
   );

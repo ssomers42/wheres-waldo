@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
-import { db } from '../../firebase/config';
+import { db } from '../firebase/config';
 
 const getLeaderboard = async () => {
   const leaderboardCol = collection(db, 'leaderboard');
