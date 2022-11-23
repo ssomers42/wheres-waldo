@@ -15,16 +15,16 @@ const style = {
   },
 };
 
-const WinnerModal = ({ time, setTime }) => {
+const WinnerModal = ({ time, leaderboard }) => {
   return (
     <div style={style.overlay}>
       <div style={style.container}>
-        <Timer time={time} setTime={setTime} />
+        <Timer time={time} />
         <p>
           Slap your name on that leaderboard. <br /> You've earned it.
         </p>
-        <NameInput />
-        <Leaderboard />
+        <NameInput time={time} />
+        <Leaderboard leaderboard={leaderboard} time={time} />
       </div>
     </div>
   );

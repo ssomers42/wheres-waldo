@@ -3,12 +3,20 @@ import Timer from '../components/Timer';
 import CurrentLevel from '../components/LevelDisplay';
 import WinnerModal from '../components/WinnerModal';
 import { useState, useEffect } from 'react';
-import { redirect } from 'react-router-dom';
+import getLeaderboard from './utils/getLeaderboard';
 
 const Game = () => {
-  const [currentLevel, setCurrentLevel] = useState(0);
+  const [currentLevel, setCurrentLevel] = useState(7);
   const [playing, setPlaying] = useState(true);
   const [time, setTime] = useState(0);
+  const [leaderboard, setLeaderboard] = useState();
+
+  if (!leaderboard) {
+    (async () => {
+      console.log('Fetching leaderboard');
+      setLeaderboard(await getLeaderboard());
+    })();
+  }
 
   let { levelName, img, relXStart, relXEnd, relYStart, relYEnd } =
     levels[currentLevel];
@@ -80,7 +88,9 @@ const Game = () => {
       />
       {playing && <CurrentLevel currentLevel={currentLevel} />}
       {playing && <Timer playing={playing} time={time} setTime={setTime} />}
-      {!playing && <WinnerModal time={time} setTime={setTime} />}
+      {!playing && (
+        <WinnerModal time={time} setTime={setTime} leaderboard={leaderboard} />
+      )}
     </div>
   );
 };

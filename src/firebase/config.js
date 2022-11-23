@@ -16,11 +16,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const getLeaderboard = async () => {
-  const leaderboardCol = collection(db, 'leaderboard');
-  const leaderboardSnap = await getDocs(leaderboardCol);
-  const leaderboardList = leaderboardSnap.docs.map((doc) => doc.data());
-  return leaderboardList;
-};
-
-export default getLeaderboard;
+export { db };

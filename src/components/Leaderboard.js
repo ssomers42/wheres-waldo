@@ -1,31 +1,16 @@
-import getLeaderboard from '../utils/getLeaderboard';
-import { useState, useEffect } from 'react';
-import formatTime from '../utils/formatTime';
+import LeaderboardEntry from './LeaderboardEntry';
 
-const Leaderboard = () => {
-  const [leaderboard, setLeaderboard] = useState([]);
-
-  useEffect(() => {
-    const getLeaderboardList = async () => {
-      let leaderboardObj = await getLeaderboard();
-      setLeaderboard(
-        leaderboardObj.map((score) => {
-          const [seconds, minutes] = formatTime(score.time);
-          return (
-            <li>
-              <span>{score.name}</span>
-              <span>{`${minutes}:${seconds}`}</span>
-            </li>
-          );
-        })
-      );
-    };
-    getLeaderboardList();
-  }, []);
-
-  //
-  // console.log(leaderboardList);
-  return <ol>{leaderboard}</ol>;
+const Leaderboard = ({ leaderboard, time }) => {
+  //TODO: Insert time into leaderboard display
+  const leaderboardList = leaderboard.map((score) => (
+    <LeaderboardEntry key={`${score.time},${score.name}`} score={score} />
+  ));
+  return (
+    <div>
+      <h4>Cage's Speed Demons</h4>
+      <ol>{leaderboardList}</ol>
+    </div>
+  );
 };
 
 export default Leaderboard;
