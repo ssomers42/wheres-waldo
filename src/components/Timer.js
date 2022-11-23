@@ -6,14 +6,7 @@ const Timer = ({ playing, time, setTime }) => {
 
   let timerStyle;
 
-  if (playing) {
-    timerStyle = {
-      position: 'absolute',
-      bottom: 0,
-      backgroundColor: 'white',
-      padding: '16px 32px',
-    };
-  } else {
+  if (!playing) {
     timerStyle = {
       color: 'var(--blue)',
       fontWeight: 900,
@@ -35,7 +28,7 @@ const Timer = ({ playing, time, setTime }) => {
     return () => clearInterval(interval);
   }, [time, playing]);
 
-  return <div style={timerStyle}>{`${minutes}: ${seconds}`}</div>;
+  return <div id="timer" style={timerStyle}>{`${minutes}:${seconds}`}</div>;
 };
 
 export default Timer;

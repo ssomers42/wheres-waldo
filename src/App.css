@@ -58,23 +58,36 @@ ol {
 }
 
 #home-container {
-  background-image: url(../public/assets/home-bg.jpg);
+  background-image: url(../public/assets/home-background-moving.jpg);
   height: 100%;
 }
 
 #home-btn {
   background-color: transparent;
+  display: flex;
+  justify-content: center;
   font-size: 9.75rem;
   line-height: 12rem;
   text-align: center;
-  transition: transform 0.2s;
   margin-top: 10%;
+  transition: transform 0.2s;
 }
 
 #home-btn:hover {
   color: var(--dark-blue);
   transform: scale(1.1);
   transform-origin: center;
+}
+
+#info-display {
+  position: absolute;
+  bottom: 0;
+  color: white;
+  border-radius: 0.5rem;
+  margin-bottom: 0.25rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 1rem 2rem;
+  text-align: center;
 }
 
 #submit-btn {
@@ -87,6 +100,10 @@ ol {
 
 #submit-btn:hover {
   background-color: var(--dark-blue);
+}
+
+#timer {
+  padding-bottom: 0.5rem;
 }
 
 #overlay {
@@ -141,4 +158,33 @@ ol {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+/* experimental code */
+
+#ball {
+  /* width: 177px;
+  height: 250px; */
+  display: block;
+  position: absolute;
+  animation: moveX 4s linear 0s infinite alternate,
+    moveY 7.5s linear 0s infinite alternate;
+}
+
+@keyframes moveX {
+  from {
+    left: 0vw;
+  }
+  to {
+    left: calc(100vw - 227px);
+  }
+}
+
+@keyframes moveY {
+  from {
+    top: 0vh;
+  }
+  to {
+    top: calc(100vh - 320.5px);
+  }
 }

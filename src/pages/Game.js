@@ -1,6 +1,6 @@
 import levels from '../levels';
 import Timer from '../components/Timer';
-import CurrentLevel from '../components/LevelDisplay';
+import LevelDisplay from '../components/LevelDisplay';
 import WinnerModal from '../components/WinnerModal';
 import { useState, useEffect } from 'react';
 import getLeaderboard from '../utils/getLeaderboard';
@@ -86,8 +86,10 @@ const Game = () => {
         alt=""
         style={levelStyle.imageStyle}
       />
-      {playing && <CurrentLevel currentLevel={currentLevel} />}
-      {playing && <Timer playing={playing} time={time} setTime={setTime} />}
+      <div id="info-display">
+        {playing && <Timer playing={playing} time={time} setTime={setTime} />}
+        {playing && <LevelDisplay currentLevel={currentLevel} />}
+      </div>
       {!playing && (
         <WinnerModal time={time} setTime={setTime} leaderboard={leaderboard} />
       )}
