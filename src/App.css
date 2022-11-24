@@ -51,10 +51,11 @@ input {
 
 li {
   margin-bottom: 0.5rem;
+  list-style-type: none;
 }
 
 ol {
-  padding-left: 1.5rem;
+  padding-left: 0;
 }
 
 #home-container {
@@ -158,6 +159,10 @@ ol {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+.leaderboard-position {
+  margin-right: 0.5rem;
 }
 
 /* experimental code */

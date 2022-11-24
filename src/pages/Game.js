@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import getLeaderboard from '../utils/getLeaderboard';
 
 const Game = () => {
-  const [currentLevel, setCurrentLevel] = useState(0);
+  const [currentLevel, setCurrentLevel] = useState(7);
   const [playing, setPlaying] = useState(true);
   const [time, setTime] = useState(0);
   const [leaderboard, setLeaderboard] = useState();

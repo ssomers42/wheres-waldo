@@ -1,6 +1,6 @@
 import formatTime from '../utils/formatTime';
 
-const LeaderboardEntry = ({ score, name, newScore }) => {
+const LeaderboardEntry = ({ score, name, newScore, position }) => {
   const [seconds, minutes] = formatTime(score.time);
 
   let displayName;
@@ -13,7 +13,10 @@ const LeaderboardEntry = ({ score, name, newScore }) => {
   return (
     <li>
       <div className={classList}>
-        <span className="leaderboard-name">{displayName}</span>
+        <div className="leaderboard-left">
+          <span className="leaderboard-position">{`${position + 1}.`}</span>
+          <span className="leaderboard-name">{displayName}</span>
+        </div>
         <span className="leaderboard-time">{`${minutes}:${seconds}`}</span>
       </div>
     </li>

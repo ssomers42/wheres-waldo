@@ -4,7 +4,7 @@ import { db } from '../firebase/config';
 
 const getLeaderboard = async () => {
   const leaderboardCol = collection(db, 'leaderboard');
-  const q = query(leaderboardCol, orderBy('time'), limit(5));
+  const q = query(leaderboardCol, orderBy('time'));
   const leaderboardSnap = await getDocs(q);
   const leaderboardList = leaderboardSnap.docs.map((doc) => doc.data());
 
